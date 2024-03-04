@@ -1111,53 +1111,29 @@ gateLeg <- function(ID, X, Y, typ, show, font, bg, freq, coords, x, i) {
     title <- NULL
   }
   col <- rgb(1,1,1, 0.6)
-  axisYLim <- par("usr")[3]  # Get the minimum y-limit of the plot
+  axisXLim <- par("usr")[2]
+  axisYLim <- par("usr")[4]
   if(length(bc$found) == 4) {
     if(bg == TRUE) {
-      qXCoords <- c(0.2, 0.8, 0.8, 0.2)
-      qYCoords <- c(0.1, 0.1, 0.7, 0.7)
+      qXCoords <- c(1.2, 1.2, 1.2, 1.2)  # Adjusted x-coordinates to move legend to the right of the plot
+      qYCoords <- c(0.8, 0.6, 0.4, 0.2)  # Adjusted y-coordinates for vertical alignment
     } else {
-      if(names(coords@min)[1] == X) {
-        qXCoords <- c(0.1, 0.9, 0.9, 0.1)
-        qYCoords <- c(0.15, 0.15, 0.85, 0.85)
-      } else {
-        qXCoords <- c(0.9, 0.9, 0.1, 0.1)
-        qYCoords <- c(0.85, 0.15, 0.15, 0.85)
-      }
+      qXCoords <- c(1.2, 1.2, 1.2, 1.2)  # Adjusted x-coordinates to move legend to the right of the plot
+      qYCoords <- c(0.8, 0.6, 0.4, 0.2)  # Adjusted y-coordinates for vertical alignment
     }
-    if(show == TRUE) {
-      if(bc$found[i] == paste0("Q1: ", X, "- ", Y, "+")
-         || bc$found[i] == paste0("Q2: ", X, "+ ", Y, "+")
-         || bc$found[i] == paste0("Q3: ", X, "+ ", Y, "-")
-         || bc$found[i] == paste0("Q4: ", X, "- ", Y, "-")) {
-        title <- substring(bc$found[i], 1, 2)
-      }
-    }
-    legX <- par("usr")[2]*qXCoords[i]
-    legY <- axisYLim*qYCoords[i]
-    legend(legX, legY, title=title, legend="", cex=1+font/10, bg=col,
-           box.lwd=0, x.intersp=-0.5, y.intersp=0.8, text.font=2,
-           xjust=0.5, yjust=-0.5)
-    text(legX, axisYLim - 0.1, labels = freq, cex = 1+font/10, col = "black", pos = 1)  # Position text under the x-axis
+    legX <- axisXLim * qXCoords[i]
+    legY <- axisYLim * qYCoords[i]
+    legend(legX, legY, title=title, legend=freq, cex=1+font/10, bg=col,
+           box.lwd=0, x.intersp=0.5, y.intersp=0.8, text.font=2,
+           xjust=0, yjust=0.5)  # Adjusted xjust and yjust for alignment
   } else {
-    if(typ != "Histogram") {
-      legX <- (bc$xLeft+bc$xRight)/2
-      legY <- (bc$yBottom+bc$yTop)/2
-      legend(legX, legY, title=title, legend="", cex=1+font/10, bg=col,
-             box.lwd=0, x.intersp=-0.5, y.intersp=0.8, text.font=2,
-             xjust=0.5, yjust=bc$yJust)
-      text(legX, axisYLim - 0.1, labels = freq, cex = 1+font/10, col = "black", pos = 1)  # Position text under the x-axis
-    } else {
-      legX <- (coords@min[[x]]+coords@max[[x]])/2
-      legY <- axisYLim*0.05
-      legend(legX, legY, title=title, legend="", cex=1+font/10, bg=col,
-             box.lwd=0, x.intersp=-0.5, y.intersp=0.8, text.font=2,
-             xjust=0.5)
-      text(legX, axisYLim - 0.1, labels = freq, cex = 1+font/10, col = "black", pos = 1)  # Position text under the x-axis
-    }
+    legX <- axisXLim * 1.1  # Position the legend to the right of the plot
+    legY <- axisYLim * 0.5  # Position the legend at the middle height of the plot
+    legend(legX, legY, title=title, legend=freq, cex=1+font/10, bg=col,
+           box.lwd=0, x.intersp=0.5, y.intersp=0.8, text.font=2,
+           xjust=0, yjust=0.5)  # Adjusted xjust and yjust for alignment
   }
 }
-
 
 hideTools <- function() {
   hide("rectang", TRUE, "fade")
