@@ -1111,18 +1111,18 @@ gateLeg <- function(ID, X, Y, typ, show, font, bg, freq, coords, x, i) {
     title <- NULL
   }
   col <- rgb(1,1,1, 0.6)
-  axisYLim <- par("usr")[3]  # Changed from par("usr")[4] to par("usr")[3]
+  axisYLim <- par("usr")[3]  # Get the minimum y-limit of the plot
   if(length(bc$found) == 4) {
     if(bg == TRUE) {
       qXCoords <- c(0.2, 0.8, 0.8, 0.2)
-      qYCoords <- c(0.1, 0.1, 0.7, 0.7)  # Adjusted y-coordinates
+      qYCoords <- c(0.1, 0.1, 0.7, 0.7)
     } else {
       if(names(coords@min)[1] == X) {
         qXCoords <- c(0.1, 0.9, 0.9, 0.1)
-        qYCoords <- c(0.15, 0.15, 0.85, 0.85)  # Adjusted y-coordinates
+        qYCoords <- c(0.15, 0.15, 0.85, 0.85)
       } else {
         qXCoords <- c(0.9, 0.9, 0.1, 0.1)
-        qYCoords <- c(0.85, 0.15, 0.15, 0.85)  # Adjusted y-coordinates
+        qYCoords <- c(0.85, 0.15, 0.15, 0.85)
       }
     }
     if(show == TRUE) {
@@ -1137,8 +1137,8 @@ gateLeg <- function(ID, X, Y, typ, show, font, bg, freq, coords, x, i) {
     legY <- axisYLim*qYCoords[i]
     legend(legX, legY, title=title, cex=1+font/10, bg=col,
            box.lwd=0, x.intersp=-0.5, y.intersp=0.8, text.font=2,
-           xjust=0.5, yjust=-0.5)  # Adjusted yjust
-    text(legX, legY - 0.1, labels = freq, cex = 1+font/10, col = "black", pos = 4)
+           xjust=0.5, yjust=-0.5)
+    text(legX, axisYLim - 0.1, labels = freq, cex = 1+font/10, col = "black", pos = 1)  # Position text under the x-axis
   } else {
     if(typ != "Histogram") {
       legX <- (bc$xLeft+bc$xRight)/2
@@ -1146,14 +1146,14 @@ gateLeg <- function(ID, X, Y, typ, show, font, bg, freq, coords, x, i) {
       legend(legX, legY, title=title, cex=1+font/10, bg=col,
              box.lwd=0, x.intersp=-0.5, y.intersp=0.8, text.font=2,
              xjust=0.5, yjust=bc$yJust)
-      text(legX, legY - 0.1, labels = freq, cex = 1+font/10, col = "black", pos = 4)
+      text(legX, axisYLim - 0.1, labels = freq, cex = 1+font/10, col = "black", pos = 1)  # Position text under the x-axis
     } else {
       legX <- (coords@min[[x]]+coords@max[[x]])/2
-      legY <- axisYLim*0.05  # Adjusted y-coordinate
+      legY <- axisYLim*0.05
       legend(legX, legY, title=title, cex=1+font/10, bg=col,
              box.lwd=0, x.intersp=-0.5, y.intersp=0.8, text.font=2,
              xjust=0.5)
-      text(legX, legY - 0.1, labels = freq, cex = 1+font/10, col = "black", pos = 4)
+      text(legX, axisYLim - 0.1, labels = freq, cex = 1+font/10, col = "black", pos = 1)  # Position text under the x-axis
     }
   }
 }
