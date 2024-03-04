@@ -1123,13 +1123,13 @@ gateLeg <- function(ID, X, Y, typ, show, font, bg, freq, coords, x, i) {
     }
     legX <- axisXLim * qXCoords[i]
     legY <- axisYLim * qYCoords[i]
-    legend(legX, legY, title=title, legend=freq, cex=1+font/10, bg=col,
+    legend(0, 0, title=title, legend=freq, cex=1+font/10, bg=col,
            box.lwd=0, x.intersp=0.5, y.intersp=0.8, text.font=2,
            xjust=0, yjust=0.5)  # Adjusted xjust and yjust for alignment
   } else {
     legX <- axisXLim * 1.1  # Position the legend to the right of the plot
     legY <- axisYLim * 0.5  # Position the legend at the middle height of the plot
-    legend(legX, legY, title=title, legend=freq, cex=1+font/10, bg=col,
+    legend(0, 0, title=title, legend=freq, cex=1+font/10, bg=col,
            box.lwd=0, x.intersp=0.5, y.intersp=0.8, text.font=2,
            xjust=0, yjust=0.5)  # Adjusted xjust and yjust for alignment
   }
