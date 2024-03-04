@@ -1135,7 +1135,7 @@ gateLeg <- function(ID, X, Y, typ, show, font, bg, freq, coords, x, i) {
     }
     legX <- par("usr")[2]*qXCoords[i]
     legY <- axisYLim*qYCoords[i]
-    legend(legX, legY, title=title, cex=1+font/10, bg=col,
+    legend(legX, legY, title=title, legend="", cex=1+font/10, bg=col,
            box.lwd=0, x.intersp=-0.5, y.intersp=0.8, text.font=2,
            xjust=0.5, yjust=-0.5)
     text(legX, axisYLim - 0.1, labels = freq, cex = 1+font/10, col = "black", pos = 1)  # Position text under the x-axis
@@ -1143,14 +1143,14 @@ gateLeg <- function(ID, X, Y, typ, show, font, bg, freq, coords, x, i) {
     if(typ != "Histogram") {
       legX <- (bc$xLeft+bc$xRight)/2
       legY <- (bc$yBottom+bc$yTop)/2
-      legend(legX, legY, title=title, cex=1+font/10, bg=col,
+      legend(legX, legY, title=title, legend="", cex=1+font/10, bg=col,
              box.lwd=0, x.intersp=-0.5, y.intersp=0.8, text.font=2,
              xjust=0.5, yjust=bc$yJust)
       text(legX, axisYLim - 0.1, labels = freq, cex = 1+font/10, col = "black", pos = 1)  # Position text under the x-axis
     } else {
       legX <- (coords@min[[x]]+coords@max[[x]])/2
       legY <- axisYLim*0.05
-      legend(legX, legY, title=title, cex=1+font/10, bg=col,
+      legend(legX, legY, title=title, legend="", cex=1+font/10, bg=col,
              box.lwd=0, x.intersp=-0.5, y.intersp=0.8, text.font=2,
              xjust=0.5)
       text(legX, axisYLim - 0.1, labels = freq, cex = 1+font/10, col = "black", pos = 1)  # Position text under the x-axis
